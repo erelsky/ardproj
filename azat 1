@@ -1,0 +1,55 @@
+int incomingByte = 0; // переменная для хранения полученного байта
+/*
+ * 0 - зависание
+ * 1 - вперёд
+ * 2 - вправо
+ * 3 - назад
+ * 4 - влео
+ */
+
+void setup(){
+  Serial.begin(9600);
+  //+
+   pinMode(11, OUTPUT);//ЛЕВЫЙ  ЗАДНИЙ
+   pinMode(10, OUTPUT);//ПРАВЫЙ ЗАДНИЙ
+   pinMode(6,  OUTPUT);//ЛЕВЫЙ  ПЕРЕДНИЙ
+   pinMode(3,  OUTPUT);//ПРАВЫЙ ПЕРЕДНИЙ
+  //-
+   pinMode(9,  INPUT);
+}
+
+void loop() {
+  analogWrite(9, LOW);
+  incomingByte = Serial.parseInt();//ОБНУЛЕНИЕ
+  Serial.println(incomingByte);    // отсылаем то, что получили
+  if(incomingByte == 0){
+    analogWrite(11, 185);//ЛЕВЫЙ  ЗАДНИЙ
+    analogWrite(10, 185);//ПРАВЫЙ ЗАДНИЙ
+    analogWrite(6,  185);//ЛЕВЫЙ  ПЕРЕДНИЙ
+    analogWrite(3,  185);//ПРАВЫЙ ПЕРЕДНИЙ 
+   }
+  if(incomingByte == 4){
+    analogWrite(11, 185);//ЛЕВЫЙ  ЗАДНИЙ
+    analogWrite(10, 255);//ПРАВЫЙ ЗАДНИЙ
+    analogWrite(6,  185);//ЛЕВЫЙ  ПЕРЕДНИЙ
+    analogWrite(3,  255);//ПРАВЫЙ ПЕРЕДНИЙ 
+   }
+  if(incomingByte == 3){
+    analogWrite(11, 255);//ЛЕВЫЙ  ЗАДНИЙ
+    analogWrite(10, 185);//ПРАВЫЙ ЗАДНИЙ
+    analogWrite(6,  255);//ЛЕВЫЙ  ПЕРЕДНИЙ
+    analogWrite(3,  185);//ПРАВЫЙ ПЕРЕДНИЙ 
+   }
+  if(incomingByte == 2){
+    analogWrite(11, 255);//ЛЕВЫЙ  ЗАДНИЙ
+    analogWrite(10, 185);//ПРАВЫЙ ЗАДНИЙ
+    analogWrite(6,  255);//ЛЕВЫЙ  ПЕРЕДНИЙ
+    analogWrite(3,  185);//ПРАВЫЙ ПЕРЕДНИЙ
+   }
+  if(incomingByte == 1){
+    analogWrite(11, 255);//ЛЕВЫЙ  ЗАДНИЙ
+    analogWrite(10, 185);//ПРАВЫЙ ЗАДНИЙ
+    analogWrite(6,  255);//ЛЕВЫЙ  ПЕРЕДНИЙ
+    analogWrite(3,  185);//ПРАВЫЙ ПЕРЕДНИЙ 
+   }
+}
